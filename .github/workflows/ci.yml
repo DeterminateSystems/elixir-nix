@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+jobs:
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: cachix/install-nix-action@v13
+        with:
+            skip_adding_nixpkgs_channel: true
+      - name: Check nixpkgs-fmt formatting
+        run: .github/workflows/fmt.sh
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: cachix/install-nix-action@v13
+        with:
+            skip_adding_nixpkgs_channel: true
+      - name: Run build
+        run: nix-build
