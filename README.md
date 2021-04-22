@@ -3,6 +3,9 @@
 This repository provides a derivation for building the [Elixir Cross
 Referencer](https://github.com/bootlin/elixir).
 
+Kept outside of Nixpkgs due to the tools' reliance upon directory structure and
+number of components.
+
 By running `nix-build`, a `result` symlink will be generated in the current
 directory; all of the scripts and tools from the Elixir repository are present
 and have been wrapped to include all of the necessary dependencies.
